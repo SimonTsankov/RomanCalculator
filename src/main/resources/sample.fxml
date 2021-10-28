@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" minHeight="445.0" minWidth="1073.0" prefHeight="445.0" prefWidth="1073.0" style="-fx-background-color: linear-gradient(from 25% 50% to 100% 100%, rgb(246,10,10),rgb(255,251,69));" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <AnchorPane prefHeight="451.0" prefWidth="409.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #fffad5,rgb(222,206,78));">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-5.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@rome.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="170.0" layoutY="260.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#minusClicked" style="-fx-background-color: linear-gradient(from 25% 50% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5)); -fx-border-color: #8dff05; -fx-border-width: 3;" text="—">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="269.0" layoutY="260.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#plusClicked" style="-fx-background-color: linear-gradient(from 25% 50% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5)); -fx-border-color: #8dff05; -fx-border-width: 3;" text="+">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(130,122,86,0.5));" text="Clear">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="73.0" layoutY="71.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5))" text="I">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="173.0" layoutY="71.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="V">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="273.0" layoutY="71.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="X">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="73.0" layoutY="171.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="L">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="173.0" layoutY="171.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="C">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="273.0" layoutY="171.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="D">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+            <Button layoutX="73.0" layoutY="266.0" minHeight="69.0" minWidth="69.0" mnemonicParsing="false" onAction="#buttonDialed" style="-fx-background-color: linear-gradient(from 25% 50% to 100% 100%, rgba(255,233,0,0.81),rgba(43,37,37,0.5));" text="M">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="29.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <ImageView fitHeight="312.0" fitWidth="600.0" layoutX="562.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5">
+         <image>
+            <Image url="@comuns.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="firstNumField" layoutX="583.0" layoutY="149.0" minHeight="40.0" minWidth="170.0" prefHeight="0.0" prefWidth="0.0" />
+      <TextField fx:id="secondNumField" layoutX="583.0" layoutY="222.0" minHeight="40.0" minWidth="170.0" onMouseClicked="#test" prefHeight="40.0" prefWidth="170.0" />
+      <Button layoutX="965.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#minimize" style="-fx-background-color: white;" text="-" textAlignment="CENTER" textFill="#0a0a0a">
+         <font>
+            <Font name="Rockwell Extra Bold" size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="1005.0" layoutY="14.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: white;" text="X" />
+      <Label fx:id="resultLabel" layoutX="583.0" layoutY="297.0" minHeight="51.0" minWidth="250.0" style="-fx-background-color: #fffbab;">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="operationLabel" layoutX="770.0" layoutY="169.0" text="+">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="57.0" />
+         </font>
+      </Label>
+      <Button contentDisplay="CENTER" layoutX="861.0" layoutY="298.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#calculate" prefHeight="50.0" prefWidth="79.0" style="-fx-background-color: white;" text="=">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button layoutX="746.0" layoutY="269.0" mnemonicParsing="false" onAction="#convert" scaleShape="false" style="-fx-background-color: transparent;" text="⎌">
+         <font>
+            <Font size="51.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="57.0" fitWidth="52.0" layoutX="1004.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@soldier.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="123.0" layoutX="979.0" layoutY="385.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@soldier2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
