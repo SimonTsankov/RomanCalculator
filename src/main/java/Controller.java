@@ -2,6 +2,8 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -18,66 +20,18 @@ public class Controller {
     AnchorPane anchorPane;
 
     @FXML
-    private TextField firstNumField;
+    private TextField firstNumField, secondNumField;
 
     @FXML
-    private Label operationLabel;
-
-    @FXML
-    private Label resultLabel;
-
-    @FXML
-    private TextField secondNumField;
+    private Label operationLabel, resultLabel;
 
     boolean typinginFirstField = true;
 
-    public String arabicToRoman(int number) {
-        if ((number <= 0) || (number > 4000)) {
-            if (number == 0) {
-                return "";
-            } else
-                resultLabel.setText(" is not in range (0,4000]");
-            throw new IllegalArgumentException(number + " is not in range (0,4000]");
-        }
-        List<Roman> romanNumerals = Roman.getReverseSortedValues();
-        int i = 0;
-        StringBuilder sb = new StringBuilder();
-
-        while ((number > 0) && (i < romanNumerals.size())) {
-            Roman currentSymbol = romanNumerals.get(i);
-            if (currentSymbol.value <= number) {
-                sb.append(currentSymbol.name());
-                number -= currentSymbol.value;
-            } else
-                i++;
-
-        }
-
-        return sb.toString();
-    }
 
     boolean isValidRomanNum(String num) {
         Pattern pattern = Pattern.compile("(^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(num);
         return matcher.find();
-    }
-
-    public int romanToArabic(String input) {
-        List<Roman> romans = new ArrayList<>();
-        int value = 0;
-
-        for (int i = 0; i < input.length(); i++)
-            romans.add(Roman.valueOf(input.charAt(i) + ""));
-
-        while (!romans.isEmpty()) {
-            Roman current = romans.remove(0);
-            if (!romans.isEmpty() && current.shouldCombine(romans.get(0)))
-                value += current.toInt(romans.remove(0));
-            else
-                value += current.ToInt();
-        }
-
-        return value;
     }
 
 
@@ -104,10 +58,10 @@ public class Controller {
 
     public void convert(ActionEvent actionEvent) {
         if (isArabic(resultLabel.getText()))
-            resultLabel.setText(arabicToRoman(Integer.parseInt(resultLabel.getText())));
+            resultLabel.setText(RomanConverter.arabicToRoman(Integer.parseInt(resultLabel.getText()), resultLabel));
         else {
 
-            resultLabel.setText(romanToArabic(resultLabel.getText()) + "");
+            resultLabel.setText(RomanConverter.romanToArabic(resultLabel.getText()) + "");
         }
         convertField(firstNumField);
         convertField(secondNumField);
@@ -115,10 +69,10 @@ public class Controller {
 
     public void convertField(TextField field) {
         if (isArabic(field.getText()))
-            field.setText(arabicToRoman(Integer.parseInt(field.getText())));
+            field.setText(RomanConverter.arabicToRoman(Integer.parseInt(field.getText()), resultLabel));
         else {
             if (isValidRomanNum(field.getText()))
-                field.setText(romanToArabic(field.getText()) + "");
+                field.setText(RomanConverter.romanToArabic(field.getText()) + "");
             else
                 field.setText("Not a correct roman numeral!");
         }
@@ -152,19 +106,21 @@ public class Controller {
     }
 
     public void calculate(ActionEvent actionEvent) {
-
-        if(!isValidRomanNum(firstNumField.getText())){
+        if(isArabic(firstNumField.getText())||isArabic(firstNumField.getText())||isArabic(firstNumField.getText())){
+            convert(new ActionEvent());
+        }
+        if (!isValidRomanNum(firstNumField.getText())) {
             firstNumField.setText("Not a correct roman numeral!");
         }
-        if(!isValidRomanNum(secondNumField.getText())){
+        if (!isValidRomanNum(secondNumField.getText())) {
             secondNumField.setText("Not a correct roman numeral!");
         }
-        int a = romanToArabic(firstNumField.getText());
-        int b = romanToArabic(secondNumField.getText());
+        int a = RomanConverter.romanToArabic(firstNumField.getText());
+        int b = RomanConverter.romanToArabic(secondNumField.getText());
         String result;
         if (operationLabel.getText().equals("+"))
-            result = arabicToRoman(a + b);
-        else if (a > b) result = arabicToRoman(a - b);
+            result = RomanConverter.arabicToRoman(a + b, resultLabel);
+        else if (a > b) result = RomanConverter.arabicToRoman(a - b, resultLabel);
         else result = "a should be > b";
 
         resultLabel.setText(result);
@@ -177,8 +133,12 @@ public class Controller {
         resultLabel.setText("");
     }
 
-    public void test(MouseEvent mouseEvent) {
-        resultLabel.setText("");
+    public void test(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER))
+            calculate(new ActionEvent());
+        if (keyEvent.getCode().equals(KeyCode.TAB)) {
+            typinginFirstField = !typinginFirstField;
+        }
     }
 
 
@@ -186,7 +146,7 @@ public class Controller {
         I(1), IV(4), V(5), IX(9), X(10),
         XL(40), L(50), XC(90), C(100),
         CD(400), D(500), CM(900), M(1000);
-        private final int value;
+        public final int value;
 
         private Roman(int value) {
             this.value = value;
