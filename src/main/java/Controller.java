@@ -60,7 +60,6 @@ public class Controller {
         if (isArabic(resultLabel.getText()))
             resultLabel.setText(RomanConverter.arabicToRoman(Integer.parseInt(resultLabel.getText()), resultLabel));
         else {
-
             resultLabel.setText(RomanConverter.romanToArabic(resultLabel.getText()) + "");
         }
         convertField(firstNumField);
@@ -142,33 +141,5 @@ public class Controller {
     }
 
 
-    public enum Roman {
-        I(1), IV(4), V(5), IX(9), X(10),
-        XL(40), L(50), XC(90), C(100),
-        CD(400), D(500), CM(900), M(1000);
-        public final int value;
 
-        private Roman(int value) {
-            this.value = value;
-        }
-
-
-        public boolean shouldCombine(Roman next) {
-            return this.value < next.value;
-        }
-
-        public int toInt(Roman next) {
-            return next.value - this.value;
-        }
-
-        public int ToInt() {
-            return value;
-        }
-
-        public static List<Roman> getReverseSortedValues() {
-            return Arrays.stream(values())
-                    .sorted(Comparator.comparing((Roman e) -> e.value).reversed())
-                    .collect(Collectors.toList());
-        }
-    }
 }
